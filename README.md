@@ -34,14 +34,19 @@ Este projeto tem como objetivo analisar os dados de vendas de uma empresa, busca
    python nome_do_script.py
 
 ### Em Ambientes Online (Google Colab, Kaggle)
+
 **Google Colab**
+
 As bibliotecas pandas e plotly já estão pré-instaladas. Basta importar e carregar os dados.
+
 **Kaggle Notebooks**
+
 Carregue seus arquivos de vendas utilizando o caminho correto:
 
 tabela_total = pd.read_csv("../input/vendas-dados/vendas.csv")
 ____________________________________________
 ### Passos da Análise
+
 **1. Leitura dos arquivos de vendas:**
 
 O código percorre a pasta Vendas e lê todos os arquivos que contêm "vendas" no nome.
@@ -65,25 +70,38 @@ _____________________________________________________
 ## Exemplo de Código 
 
 import os
+
 import pandas as pd
 
-# Lista os arquivos na pasta de vendas
+**Lista os arquivos na pasta de vendas**
+
 lista_arquivo = os.listdir("/content/drive/MyDrive/curso basico de python/Curso Básico de Python/Vendas")
 
-# Cria uma lista para armazenar as tabelas
+**Cria uma lista para armazenar as tabelas**
+
 tabelas = []
 
-# Itera sobre os arquivos
-for arquivo in lista_arquivo:
-    if "vendas" in arquivo.lower():  # Verifica se "vendas" está no nome do arquivo
-        # Lê o arquivo CSV
-        tabela = pd.read_csv(f"/content/drive/MyDrive/curso basico de python/Curso Básico de Python/Vendas/{arquivo}")
-        tabelas.append(tabela)  # Adiciona a tabela à lista
+**Itera sobre os arquivos**
 
-# Combina todas as tabelas em um único DataFrame
+for arquivo in lista_arquivo:
+
+    if "vendas" in arquivo.lower():  # Verifica se "vendas" está no nome do arquivo
+    
+**Lê o arquivo CSV**
+        
+        tabela = pd.read_csv(f"/content/drive/MyDrive/curso basico de python/Curso Básico de Python/Vendas/{arquivo}")
+          
+  **Adiciona a tabela à lista**
+           
+        tabelas.append(tabela)  
+   
+
+**Combina todas as tabelas em um único DataFrame**
+
 tabela_total = pd.concat(tabelas, ignore_index=True)
 
-# Exibe o DataFrame final
+**Exibe o DataFrame final**
+
 display(tabela_total)
 
 _________________________________________________
@@ -94,7 +112,8 @@ A análise também inclui a criação de gráficos interativos para visualizar a
 
 import plotly.express as px
 
-# Criação de um gráfico de barras para visualizar o faturamento por loja
+**Criação de um gráfico de barras para visualizar o faturamento por loja**
+
 grafico = px.bar(tabela_lojas, x=tabela_lojas.index, y="Faturamento")
 grafico.show()
 
